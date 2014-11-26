@@ -36,7 +36,7 @@ class MainMenu(Menu):
 
 class Background(cocos.layer.ColorLayer):
     def __init__(self):
-        super( Background, self ).__init__( 192,192,192,192)
+        super( Background, self ).__init__( 192,192,192,80)
 
 
 def main():
