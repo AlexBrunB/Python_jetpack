@@ -1,13 +1,5 @@
 from __future__ import division, print_function, unicode_literals
 
-# This code is so you can run the samples without installing the package
-import sys
-import os
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
-#
-
-testinfo = "s, q"
-tags = "menu, MenuItem, ImageMenuItem, menu_valign, menu_halign"
 
 from pyglet import image
 from pyglet.gl import *
@@ -42,17 +34,19 @@ class MainMenu(Menu):
     def on_quit(self ) :
         pyglet.app.exit()
 
+class Background(cocos.layer.ColorLayer):
+    def __init__(self):
+        super( Background, self ).__init__( 192,192,192,192)
+
 
 def main():
     pyglet.font.add_directory('.')
+    cocos.director.director.init()
 
-    director.init( resizable=True)
-    director.run ( Scene( MainMenu() ) )
+    layer = Background ()
+
+    cocos.director.director.run ( Scene( MainMenu(), Background() ) )
 
 if __name__ == "__main__":
     main()
 
-
-
-
-    
