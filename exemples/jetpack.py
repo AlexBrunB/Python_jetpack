@@ -41,11 +41,9 @@ class Background(cocos.layer.ColorLayer):
 
 def main():
     pyglet.font.add_directory('.')
-    cocos.director.director.init()
 
-    layer = Background ()
-
-    cocos.director.director.run ( Scene( MainMenu(), Background() ) )
+    director.init( resizable=True)
+    director.run ( Scene( MainMenu(), Background() ) )
 
 if __name__ == "__main__":
     main()
