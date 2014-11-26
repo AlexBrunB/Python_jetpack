@@ -18,7 +18,7 @@ class Character(cocos.layer.ColorLayer):
 
         sprite = cocos.sprite.Sprite('sam.png')
         sprite.position = 120, 320
-
+        sprite.do( MoveBy( (400,0), duration=2 ) )
         sprite.scale = 1
 
         self.add( sprite, z=0 )
@@ -31,6 +31,7 @@ if __name__ == "__main__":
     layer = Character ()
 
     layer.do( RotateBy(360, duration=1))
+
 
     main_scene = cocos.scene.Scene (layer)
 
