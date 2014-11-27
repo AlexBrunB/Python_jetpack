@@ -22,7 +22,7 @@ class MainMenu(Menu):
 
         items = [
             (MenuItem('Jouer', self.on_play ) ),
-            (MenuItem('Options', self.on_quit ) ),
+            (MenuItem('Options', self.on_options ) ),
             (MenuItem('Quitter', self.on_quit )),
         ]
 
@@ -31,8 +31,15 @@ class MainMenu(Menu):
     def on_play(self ):
         pyglet.app.run()
 
+    def on_options(self):
+        self.parent.switch_to(1)
+
     def on_quit(self ) :
         pyglet.app.exit()
+
+class OptionsMenu(cocos.layer.Layer):
+    def __init__(self):
+        super(MainMenu, self).__init__()
 
 
 def main():
@@ -41,8 +48,10 @@ def main():
     director.init( resizable=True)
 
     layer = cocos.layer.ColorLayer(192,192,192,80)
+
     main_scene = cocos.scene.Scene (layer)
-    director.run ( Scene( MainMenu(), main_scene) )
+
+    director.run ( Scene(MultiplexLayer( MainMenu(),main_scene) ))
 
 
 if __name__ == "__main__":
