@@ -37,10 +37,18 @@ class MainMenu(Menu):
     def on_quit(self ) :
         pyglet.app.exit()
 
+
 class OptionsMenu(cocos.layer.Layer):
     def __init__(self):
-        super(MainMenu, self).__init__()
+        super(OptionsMenu, self).__init__()
 
+        label = cocos.text.Label('Options',
+            font_name='Ubuntu Condensed',
+            font_size=64,
+            anchor_x='center', anchor_y='center')
+
+        label.position = 300,400
+        self.add( label )
 
 def main():
     pyglet.font.add_directory('.')
@@ -51,7 +59,8 @@ def main():
 
     main_scene = cocos.scene.Scene (layer)
 
-    director.run ( Scene(MultiplexLayer( MainMenu(),main_scene) ))
+
+    director.run ( Scene(MultiplexLayer( MainMenu(),OptionsMenu()) ))
 
 
 if __name__ == "__main__":
