@@ -34,16 +34,16 @@ class MainMenu(Menu):
     def on_quit(self ) :
         pyglet.app.exit()
 
-class Background(cocos.layer.ColorLayer):
-    def __init__(self):
-        super( Background, self ).__init__( 192,192,192,80)
-
 
 def main():
     pyglet.font.add_directory('.')
 
     director.init( resizable=True)
-    director.run ( Scene( MainMenu(), Background() ) )
+
+    layer = cocos.layer.ColorLayer(192,192,192,80)
+    main_scene = cocos.scene.Scene (layer)
+    director.run ( Scene( MainMenu(), main_scene) )
+
 
 if __name__ == "__main__":
     main()
