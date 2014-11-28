@@ -1,0 +1,3 @@
+[console_scripts]
+pyjetpack = pyjetpack.cli:main
+

@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 version = '0.1'
 
 setup(
-    name='jetpack_python',
+    name='pyjetpack',
     version=version,
     description="Game to Improve Python Programming",
     long_description="""\
@@ -11,19 +11,26 @@ setup(
 Game to Improve Python Programming by using librairy Cocos2d
 
 """,
-    classifiers=[],
+    classifiers=[
+        "Development Status :: 2 - Pre-Alpha",
+        "Intended Audience :: End Users/Desktop",
+        "License :: OSI Approved :: BSD License",
+    ],
     keywords='cocos',
     author='Alexandre Brun Beraud',
     author_email='abrunberaud@gmail.com',
     url='',
-    license='Daniel Moisset, Ricardo Quesada, Rayentray Tappa, Lucio Torre',
+    license='BSD',
     packages=find_packages(exclude=['ez_setup', 'examples', 'tests']),
     include_package_data=True,
     zip_safe=False,
     install_requires=[
         # -*- Extra requirements: -*-
-        'python2.7',
         'cocos2d',
     ],
-    entry_points='__main__',
+    entry_points=dict(
+        console_scripts=[
+            'pyjetpack = pyjetpack.cli:main',
+        ],
+    ),
 )
