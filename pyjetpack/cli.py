@@ -30,7 +30,7 @@ class MainMenu(Menu):
         self.create_menu(items, shake(), shake_back())
 
     def on_play(self):
-        pyglet.app.run()
+        self.parent.switch_to(0)
 
     def on_options(self):
         self.parent.switch_to(1)
@@ -39,35 +39,29 @@ class MainMenu(Menu):
         pyglet.app.exit()
 
 
-class OptionsMenu(cocos.layer.Layer):
+class OptionMenu(Menu):
     def __init__(self):
-        super(OptionsMenu, self).__init__()
+        super(OptionMenu, self).__init__("JetPack Python")
 
-        label = cocos.text.Label(
-            'Options',
-            font_name='Ubuntu Condensed',
-            font_size=64,
-            anchor_x='center', anchor_y='center'
-        )
+        l = []
+        l.append( MenuItem('Quit', self.on_quit))
+        l.append( MenuItem('Volumes', self.on_quit) )
 
-        label.position = 300, 400
-        self.add(label)
+        self.create_menu(l)
+
+
+    def on_quit(self):
+        self.parent.switch_to(0)
 
 
 def main():
-    pyglet.font.add_directory('.')
 
     director.init(resizable=True)
 
-    layer = cocos.layer.ColorLayer(192, 192, 192, 80)
-
-    main_scene = cocos.scene.Scene(layer)
-
-    director.run(
-        Scene(
-            MultiplexLayer(
-                MainMenu(),
-                OptionsMenu()
-            )
+    scene = Scene(
+        MultiplexLayer(MainMenu(), OptionMenu())
         )
-    )
+    director.run(scene)
+
+if __name__ == "__main__":
+    main()
