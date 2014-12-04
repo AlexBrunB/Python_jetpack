@@ -11,25 +11,25 @@ class Character(cocos.layer.ColorLayer):
 
         x,y = director.get_window_size()
 
-        label = cocos.text.Label('Level 1!',
+        label = cocos.text.Label('Python JetPack',
             font_name='Ubuntu Condensed',
-            font_size=64,
+            font_size=32,
             anchor_x='center', anchor_y='center')
 
         label.position = 120, 320
         self.add( label )
 
 
-        sprite = cocos.sprite.Sprite('jetpackjoyride_titlecard.jpg')
-        sprite.position = 100,220
-        sprite.do( MoveBy( (1000,0), duration=2 ) )
+        sprite = cocos.sprite.Sprite('trees.png')
+        sprite.position = 220,220
+        sprite.opacity = 150
         sprite.scale = 1
 
 
 
         self.add( sprite, z=0 )
 
-if __name__ == "__main__":
+def get_newgame():
     cocos.director.director.init()
 
 

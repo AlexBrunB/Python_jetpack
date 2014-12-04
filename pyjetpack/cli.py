@@ -12,6 +12,9 @@ from cocos.layer import *
 from cocos.actions import *
 import cocos
 from cocos.actions import *
+from cocos.scenes import *
+from pyjetpack import *
+from level1 import *
 
 
 class MainMenu(Menu):
@@ -22,15 +25,15 @@ class MainMenu(Menu):
         self.menu_halign = CENTER
 
         items = [
-            (MenuItem('Jouer', self.on_play)),
+            (MenuItem('Jouer', self.on_new_game)),
             (MenuItem('Options', self.on_options)),
             (MenuItem('Quitter', self.on_quit)),
         ]
 
         self.create_menu(items, shake(), shake_back())
 
-    def on_play(self):
-        self.parent.switch_to(0)
+    def on_new_game(self):
+        director.push(get_newgame())
 
     def on_options(self):
         self.parent.switch_to(1)
