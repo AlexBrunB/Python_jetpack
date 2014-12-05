@@ -1,13 +1,12 @@
 
 import cocos
-from cocos.actions import *
 from cocos.director import director
 from cocos.sprite import Sprite
 
 
-class Character(cocos.layer.ColorLayer):
+class BackgroundLayer(cocos.layer.ColorLayer):
     def __init__(self):
-        super( Character, self ).__init__( 192,192,192,80)
+        super(BackgroundLayer, self).__init__( 192,192,192,80)
 
         x,y = director.get_window_size()
 
@@ -17,8 +16,7 @@ class Character(cocos.layer.ColorLayer):
             anchor_x='center', anchor_y='center')
 
         label.position = 120, 320
-        self.add( label )
-
+        self.add(label)
 
         sprite = cocos.sprite.Sprite('trees.png')
         sprite.position = 220,220
@@ -27,17 +25,13 @@ class Character(cocos.layer.ColorLayer):
 
 
 
-        self.add( sprite, z=0 )
+        self.add(sprite, z=0)
 
 def get_newgame():
-    cocos.director.director.init()
 
+    layer = BackgroundLayer()
 
-    layer = Character ()
+    return cocos.scene.Scene (layer)
 
-
-    main_scene = cocos.scene.Scene (layer)
-
-    cocos.director.director.run (main_scene)
 
 

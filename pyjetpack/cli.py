@@ -1,20 +1,13 @@
 from __future__ import division, print_function, unicode_literals
 
 
-from pyglet import image
-from pyglet.gl import *
-from pyglet import font
-
-from cocos.director import *
 from cocos.menu import *
 from cocos.scene import *
 from cocos.layer import *
 from cocos.actions import *
-import cocos
-from cocos.actions import *
-from cocos.scenes import *
-from pyjetpack import *
-from level1 import *
+
+from level1 import get_newgame
+from cocos.director import director
 
 
 class MainMenu(Menu):
