@@ -1,11 +1,11 @@
 from __future__ import division, print_function, unicode_literals
 
 
-from cocos.menu import *
-from cocos.scene import *
-from cocos.layer import *
-from cocos.actions import *
-
+from cocos.scene import Scene
+import pyglet
+from cocos.menu import Menu
+from cocos.menu import MenuItem, MultiplexLayer
+from cocos.menu import shake, shake_back
 from level1 import get_newgame
 from cocos.director import director
 
@@ -14,8 +14,6 @@ class MainMenu(Menu):
     def __init__(self):
         super(MainMenu, self).__init__("JetPack Python")
 
-        self.menu_valign = CENTER
-        self.menu_halign = CENTER
 
         items = [
             (MenuItem('Jouer', self.on_new_game)),
@@ -52,8 +50,8 @@ class OptionMenu(Menu):
 
 def main():
 
-    director.init(resizable=True)
-
+    window = director.init(resizable=True)
+    director.window = window
     scene = Scene(
         MultiplexLayer(MainMenu(), OptionMenu())
         )
