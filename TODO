@@ -1,20 +1,8 @@
-- Copyright images.
-
-- def on_enter()
-switch to(1)
-- def on_exit()
-switch to(0)
-
-- Les scenes sont pousés avdec le director.
-
-- Chercher comment faire une scene multi layer.
- MultiplexLayer(
-    MainMenu()
-    OptionsMenu()
+- Ajouter copyrights
+- Ajouter actions sur level1.py
+- Ajouter des evenements sur le sprite.
+- Chercher Class Music.
 
 
-- lire l'article sur le coding standard de Flo
-
-- utiliser la variable main_scene dans le director run
-
+- 
 
