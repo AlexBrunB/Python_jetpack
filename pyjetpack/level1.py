@@ -23,16 +23,17 @@ class BackgroundLayer(cocos.layer.ColorLayer):
 
         sprite1 = Sprite('trees.png')
         self.add( sprite1 )
-        sprite1.position = 220, 200
+        sprite1.position = 220, 220
         sprite1.do(FadeIn(3))
 
-        #sprite2 = Sprite('car.gif')
-        #sprite1.add( sprite2 )
-        #sprite2.position = -50, -50
-        #sprite2.scale = 3
+        sprite2 = Sprite('car.gif')
+        sprite1.add( sprite2 )
+        sprite2.position = -100, -50
+        sprite2.do(MoveBy((300,0), 1)),
+        sprite2.scale = 3
 
 
-        self.add(sprite1)
+        self.add(sprite1,sprite2)
 
 
 def get_newgame():
