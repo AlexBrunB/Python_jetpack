@@ -7,9 +7,9 @@ import pyglet
 from cocos.menu import Menu
 from cocos.menu import MenuItem, MultiplexLayer
 from cocos.menu import shake, shake_back
-from level1 import get_newgame
 from cocos.director import director
 from pyjetpack import soundex
+from pyjetpack.level1 import get_newgame
 
 
 class MainMenu(Menu):
