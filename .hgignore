@@ -1,0 +1,19 @@
+syntax: glob
+**/*.orig
+**/*.pyc
+**/*.pyo
+**/*.*~
+*.dot
+*.ps
+*.lprof
+*.pstat
+*.calltree
+*.swp
+.tmp_*
+Thumbs.db
+bin/*
+dist/*
+build/*
+pyjetpack.egg-info/*
+.idea
+**/*.so
