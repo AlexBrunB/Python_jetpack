@@ -1,0 +1,17 @@
+Metadata-Version: 1.1
+Name: pyjetpack
+Version: 0.1
+Summary: Game to Improve Python Programming
+Home-page: UNKNOWN
+Author: Alexandre Brun Beraud
+Author-email: abrunberaud@gmail.com
+License: BSD
+Description: 
+        Game to Improve Python Programming by using librairy Cocos2d
+        
+        
+Keywords: cocos
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: License :: OSI Approved :: BSD License
