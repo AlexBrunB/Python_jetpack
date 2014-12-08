@@ -14,14 +14,18 @@ class MainMenu(Menu):
     def __init__(self):
         super(MainMenu, self).__init__("JetPack Python")
 
+        #select_sound = ('space_oddity.mp3')
 
         items = [
             (MenuItem('Jouer', self.on_new_game)),
             (MenuItem('Options', self.on_options)),
             (MenuItem('Quitter', self.on_quit)),
         ]
-
+        #select_sound('space_oddity.mp3')
         self.create_menu(items, shake(), shake_back())
+
+        #if select_sound:
+        #    select_sound.play('space_oddity.mp3')
 
     def on_new_game(self):
         director.push(get_newgame())
