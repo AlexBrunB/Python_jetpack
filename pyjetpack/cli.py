@@ -52,6 +52,8 @@ class OptionMenu(Menu):
 
 def main():
 
+    pyglet.resource.path.append('@pyjetpack.data')
+    pyglet.resource.reindex()
     window = director.init(resizable=True)
     director.window = window
     scene = Scene(MultiplexLayer(MainMenu(), OptionMenu()))
