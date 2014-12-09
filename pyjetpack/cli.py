@@ -5,11 +5,18 @@ from __future__ import division, print_function, unicode_literals
 from cocos.scene import Scene
 import pyglet
 from cocos.menu import Menu
+from cocos.layer import ColorLayer
 from cocos.menu import MenuItem, MultiplexLayer
 from cocos.menu import shake, shake_back
 from cocos.director import director
 from pyjetpack import soundex
 from pyjetpack.level1 import get_newgame
+
+
+
+class BackgroundLayer(ColorLayer):
+    def __init__(self):
+        super(BackgroundLayer, self).__init__(192, 192, 192, 80)
 
 
 class MainMenu(Menu):
@@ -82,7 +89,7 @@ def main():
     pyglet.resource.reindex()
     window = director.init(resizable=True)
     director.window = window
-    scene = Scene(MultiplexLayer(MainMenu(), OptionMenu(), ScoreMenu()))
+    scene = Scene(BackgroundLayer(),MultiplexLayer(MainMenu(), OptionMenu(), ScoreMenu()))
     director.run(scene)
 
 if __name__ == "__main__":
