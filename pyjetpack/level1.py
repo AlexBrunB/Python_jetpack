@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+
 from cocos.scene import Scene
 from cocos.text import Label
 from cocos.layer import ColorLayer
@@ -7,6 +8,9 @@ from cocos.actions import FadeIn, MoveBy
 
 
 class BackgroundLayer(ColorLayer):
+
+    is_event_handler = True
+
     def __init__(self):
         super(BackgroundLayer, self).__init__(192, 192, 192, 192)
 
@@ -18,6 +22,7 @@ class BackgroundLayer(ColorLayer):
             anchor_y='center'
         )
 
+
         label.position = 120, 320
         label.do(MoveBy((600, 0), 2))
         self.add(label)
@@ -27,18 +32,37 @@ class BackgroundLayer(ColorLayer):
         sprite1.position = 220, 220
         sprite1.do(FadeIn(3))
 
-        sprite2 = Sprite('car.gif')
-        sprite1.add(sprite2)
-        sprite2.position = -100, -50
-        sprite2.do(MoveBy((300, 0), 1)),
-        sprite2.scale = 3
 
-        self.add(sprite1, sprite2)
+        self.add(sprite1, z=0)
+
+
+        self.posx = 100
+        self.posy = 240
+        self.text = Label('No mouse events yet', font_size=18, x=self.posx, y=self.posy )
+        self.add( self.text )
+
+
+    def update_text (self, x, y):
+        text = 'Mouse @ %d,%d' % (x, y)
+        self.text.element.text = text
+        self.text.element.x = self.posx
+        self.text.element.y = self.posy
+
+    def on_mouse_motion (self, x, y, dx, dy):
+        self.update_text (x, y)
+
+    def on_mouse_drag (self, x, y, dx, dy, buttons, modifiers):
+
+        self.update_text (x, y)
+
+    def on_mouse_press (self, x, y, buttons, modifiers):
+        self.posx, self.posy = director.get_virtual_coordinates (x, y)
+        self.update_text (x,y)
+
+
 
 
 def get_newgame():
     layer = BackgroundLayer()
     return Scene(layer)
-
-
 
