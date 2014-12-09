@@ -50,6 +50,7 @@ class OptionMenu(Menu):
         l = [
             MenuItem('Quit', self.on_quit),
             MenuItem('Volumes', self.on_quit),
+            (MenuItem('Show FPS: ', self.on_show_fps, True) )
         ]
 
         self.create_menu(l)
@@ -57,12 +58,15 @@ class OptionMenu(Menu):
     def on_quit(self):
         self.parent.switch_to(0)
 
+    def on_show_fps( self, value ):
+        director.show_FPS = value
+
 class ScoreMenu(Menu):
     def __init__( self ):
         super( ScoreMenu, self ).__init__("JetPack Python" )
 
         self.font_title['font_name'] = 'You Are Loved'
-        self.font_title['font_size'] = 72
+        self.font_title['font_size'] = 48
         self.font_item['font_name'] = 'You Are Loved'
         self.font_item_selected['font_name'] = 'You Are Loved'
 
