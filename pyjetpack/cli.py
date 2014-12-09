@@ -25,6 +25,10 @@ class MainMenu(Menu):
         ]
         self.create_menu(items, shake(), shake_back())
 
+    if soundex.set_music('space_oddity.mp3'):
+        soundex.play_music('space_oddity.mp3')
+
+
     def on_new_game(self):
         director.push(get_newgame())
 
