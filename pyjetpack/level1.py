@@ -24,7 +24,6 @@ class BackgroundLayer(ColorLayer):
             anchor_y='center'
         )
 
-
         label.position = 120, 320
         label.do(MoveBy((600, 0), 2))
         self.add(label)
@@ -39,24 +38,23 @@ class BackgroundLayer(ColorLayer):
         self.posx = 100
         self.posy = 240
         self.text = Label('Mouse Event', font_size=18, x=self.posx, y=self.posy )
-        self.add( self.text )
+        self.add(self.text)
 
-
-    def update_text (self, x, y):
+    def update_text(self, x, y):
         text = 'Mouse @ %d,%d' % (x, y)
         self.text.element.text = text
         self.text.element.x = self.posx
         self.text.element.y = self.posy
 
-    def on_mouse_motion (self, x, y, dx, dy):
-        self.update_text (x, y)
+    def on_mouse_motion(self, x, y, dx, dy):
+        self.update_text(x, y)
 
-    def on_mouse_drag (self, x, y, dx, dy, buttons, modifiers):
-        self.update_text (x, y)
+    def on_mouse_drag(self, x, y, dx, dy, buttons, modifiers):
+        self.update_text(x, y)
 
-    def on_mouse_press (self, x, y, buttons, modifiers):
+    def on_mouse_press(self, x, y, buttons, modifiers):
         self.posx, self.posy = director.get_virtual_coordinates (x, y)
-        self.update_text (x,y)
+        self.update_text(x, y)
 
 #This is the emitter
 """
@@ -85,7 +83,6 @@ class Character(object):
         self.posy = 240
         self.add( self.Sprite('car.gif', x=self.posx, y=self.posy ) )
 """
-
 
 
 def get_newgame():
