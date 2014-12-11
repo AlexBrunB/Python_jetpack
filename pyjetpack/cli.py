@@ -6,7 +6,8 @@ from cocos.scene import Scene
 import pyglet
 from cocos.menu import Menu
 from cocos.layer import ColorLayer
-from cocos.menu import MenuItem, MultiplexLayer
+from cocos.menu import MenuItem, MultiplexLayer, ToggleMenuItem
+from cocos.menu import MultipleMenuItem
 from cocos.menu import shake, shake_back
 from cocos.director import director
 from pyjetpack import soundex
@@ -20,9 +21,9 @@ class BackgroundLayer(ColorLayer):
 
 class MainMenu(Menu):
     def __init__(self):
-        super(MainMenu, self).__init__("JetPack Python")
+        super(MainMenu, self).__init__("Main menu")
 
-        soundex.set_music('space_oddity.mp3')
+        soundex.set_music('space_oddity.ogg')
 
         items = [
             MenuItem('Jouer', self.on_new_game),
@@ -31,10 +32,6 @@ class MainMenu(Menu):
             MenuItem('Quitter', self.on_quit),
         ]
         self.create_menu(items, shake(), shake_back())
-
-    if soundex.set_music('space_oddity.mp3'):
-        soundex.play_music('space_oddity.mp3')
-
 
     def on_new_game(self):
         director.push(get_newgame())
@@ -51,12 +48,12 @@ class MainMenu(Menu):
 
 class OptionMenu(Menu):
     def __init__(self):
-        super(OptionMenu, self).__init__("JetPack Python")
+        super(OptionMenu, self).__init__("Options menu")
 
         l = [
-            MenuItem('Quit', self.on_quit),
-            MenuItem('Volumes', self.on_quit),
-            MenuItem('Show FPS: ', self.on_show_fps, True),
+            MenuItem('Back', self.on_quit),
+            MenuItem('Volumes', self.on_volumes),
+            ToggleMenuItem('Show FPS: ', self.on_show_fps, True),
         ]
 
         self.create_menu(l)
@@ -67,10 +64,63 @@ class OptionMenu(Menu):
     def on_show_fps(self, value):
         director.show_FPS = value
 
+    def on_volumes(self):
+        self.parent.switch_to(3)
+
+
+class VolumesMenu(Menu):
+    def __init__(self):
+        super(VolumesMenu, self).__init__("Volumes menu")
+        self.volumes = [
+            'Mute',
+            '10',
+            '20',
+            '30',
+            '40',
+            '50',
+            '60',
+            '70',
+            '80',
+            '90',
+            '100',
+        ]
+
+        items = []
+
+        items.append(MenuItem('Back', self.on_quit))
+        items.append(
+            MultipleMenuItem(
+                'SFX volume: ',
+                self.on_sfx_volume,
+                self.volumes,
+                int(soundex.sound_vol * 10)
+            )
+        )
+        items.append(
+            MultipleMenuItem(
+                'Music volume: ',
+                self.on_music_volume,
+                self.volumes,
+                int(soundex.music_player.volume * 10)
+            )
+        )
+        self.create_menu(items)
+
+    def on_quit(self):
+        self.parent.switch_to(1)
+
+    def on_sfx_volume(self, idx):
+        vol = idx / 10.0
+        soundex.sound_volume(vol)
+
+    def on_music_volume(self, idx):
+        vol = idx / 10.0
+        soundex.music_volume(vol)
+
 
 class ScoreMenu(Menu):
     def __init__(self):
-        super(ScoreMenu, self).__init__("JetPack Python")
+        super(ScoreMenu, self).__init__("Score menu")
 
         self.font_title['font_name'] = 'You Are Loved'
         self.font_title['font_size'] = 48
@@ -91,7 +141,7 @@ def main():
     director.window = window
     scene = Scene(
         BackgroundLayer(),
-        MultiplexLayer(MainMenu(), OptionMenu(), ScoreMenu())
+        MultiplexLayer(MainMenu(), OptionMenu(), ScoreMenu(), VolumesMenu())
     )
     director.run(scene)
 
