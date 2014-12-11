@@ -13,7 +13,6 @@ from pyjetpack import soundex
 from pyjetpack.level1 import get_newgame
 
 
-
 class BackgroundLayer(ColorLayer):
     def __init__(self):
         super(BackgroundLayer, self).__init__(192, 192, 192, 80)
@@ -43,8 +42,8 @@ class MainMenu(Menu):
     def on_options(self):
         self.parent.switch_to(1)
 
-    def on_scores( self ):
-        self.parent.switch_to( 2 )
+    def on_scores(self):
+        self.parent.switch_to(2)
 
     def on_quit(self):
         pyglet.app.exit()
@@ -57,7 +56,7 @@ class OptionMenu(Menu):
         l = [
             MenuItem('Quit', self.on_quit),
             MenuItem('Volumes', self.on_quit),
-            (MenuItem('Show FPS: ', self.on_show_fps, True) )
+            MenuItem('Show FPS: ', self.on_show_fps, True),
         ]
 
         self.create_menu(l)
@@ -65,22 +64,23 @@ class OptionMenu(Menu):
     def on_quit(self):
         self.parent.switch_to(0)
 
-    def on_show_fps( self, value ):
+    def on_show_fps(self, value):
         director.show_FPS = value
 
+
 class ScoreMenu(Menu):
-    def __init__( self ):
-        super( ScoreMenu, self ).__init__("JetPack Python" )
+    def __init__(self):
+        super(ScoreMenu, self).__init__("JetPack Python")
 
         self.font_title['font_name'] = 'You Are Loved'
         self.font_title['font_size'] = 48
         self.font_item['font_name'] = 'You Are Loved'
         self.font_item_selected['font_name'] = 'You Are Loved'
 
-        self.create_menu( [MenuItem('Go Back', self.on_quit)] )
+        self.create_menu([MenuItem('Go Back', self.on_quit)])
 
-    def on_quit( self ):
-        self.parent.switch_to( 0 )
+    def on_quit(self):
+        self.parent.switch_to(0)
 
 
 def main():
@@ -89,7 +89,10 @@ def main():
     pyglet.resource.reindex()
     window = director.init(resizable=True)
     director.window = window
-    scene = Scene(BackgroundLayer(),MultiplexLayer(MainMenu(), OptionMenu(), ScoreMenu()))
+    scene = Scene(
+        BackgroundLayer(),
+        MultiplexLayer(MainMenu(), OptionMenu(), ScoreMenu())
+    )
     director.run(scene)
 
 if __name__ == "__main__":
