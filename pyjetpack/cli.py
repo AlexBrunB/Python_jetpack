@@ -25,10 +25,10 @@ class MainMenu(Menu):
         soundex.set_music('space_oddity.mp3')
 
         items = [
-            (MenuItem('Jouer', self.on_new_game)),
-            (MenuItem('Options', self.on_options)),
-            ( MenuItem('Scores', self.on_scores)),
-            (MenuItem('Quitter', self.on_quit)),
+            MenuItem('Jouer', self.on_new_game),
+            MenuItem('Options', self.on_options),
+            MenuItem('Scores', self.on_scores),
+            MenuItem('Quitter', self.on_quit),
         ]
         self.create_menu(items, shake(), shake_back())
 
