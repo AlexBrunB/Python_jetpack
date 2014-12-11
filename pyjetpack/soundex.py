@@ -1,4 +1,4 @@
-#
+# -*- encoding: utf-8 -*-
 # original file from http://www.partiallydisassembled.net/make_me/
 # modified later for this game
 #
@@ -8,7 +8,9 @@ import pyglet
 try:
     import pyglet.media.avbin
     have_avbin = True
-except:
+
+except ImportError:
+    print("pyglet.media.avbin not found going silent")
     pyglet.options['audio'] = ('silent')
     have_avbin = False
     MUSIC = False
@@ -37,6 +39,7 @@ def set_music(name):
     if not MUSIC:
         return
 
+    #print('Music set {}'.format(name))
     music_player.next()
     music_player.queue(pyglet.resource.media(name, streaming=True))
     music_player.play()
