@@ -85,25 +85,22 @@ class VolumesMenu(Menu):
             '100',
         ]
 
-        items = []
-
-        items.append(MenuItem('Back', self.on_quit))
-        items.append(
+        items = [
+            MenuItem('Back', self.on_quit),
             MultipleMenuItem(
                 'SFX volume: ',
                 self.on_sfx_volume,
                 self.volumes,
                 int(soundex.sound_vol * 10)
-            )
-        )
-        items.append(
+            ),
             MultipleMenuItem(
                 'Music volume: ',
                 self.on_music_volume,
                 self.volumes,
                 int(soundex.music_player.volume * 10)
-            )
-        )
+            ),
+        ]
+
         self.create_menu(items)
 
     def on_quit(self):
