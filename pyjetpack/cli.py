@@ -52,6 +52,7 @@ class OptionMenu(Menu):
 
         l = [
             MenuItem('Back', self.on_quit),
+            MenuItem('Fullscreen', self.on_fullscreen),
             MenuItem('Volumes', self.on_volumes),
             ToggleMenuItem('Show FPS: ', self.on_show_fps, True),
         ]
@@ -66,6 +67,9 @@ class OptionMenu(Menu):
 
     def on_volumes(self):
         self.parent.switch_to(3)
+
+    def on_fullscreen(self):
+        director.window.set_fullscreen(not director.window.fullscreen)
 
 
 class VolumesMenu(Menu):
