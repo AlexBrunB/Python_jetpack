@@ -73,20 +73,15 @@ class Playground(cocos.layer.ScrollableLayer, pyglet.event.EventDispatcher):
         self.add(sprite)
         sprite.position = -50, -110
 
+    def add(self, BackgroundLayer, z=0, name=None ):
+        return director.window.push_handlers(Scene)
+
     def __register_event_type(self):
         self.register_event_type('on_enter')
         self.register_event_type('on_mouse_motion')
 
-    def on_enter(self):
-        director.push_handlers(self.on_enter(BackgroundLayer()))
-
-
-#And this is the listener
-# First at all, i can't find the action to add sprite as an object or to create an object
-## And I don't figure why this class is not in BackgroundLayer
-
 def get_newgame():
     scroller = cocos.layer.ScrollingManager(viewport=director.window)
+    layer = (BackgroundLayer())
     scroller.add(Playground())
-    layer = MultiplexLayer(BackgroundLayer(), Playground())
-    return Scene(layer)
+    return Scene(layer, scroller)
