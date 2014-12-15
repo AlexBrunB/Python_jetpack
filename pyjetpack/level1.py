@@ -10,56 +10,14 @@ import pyglet
 from pyglet.window import key
 
 
-class BackgroundLayer(ColorLayer):
-
-    is_event_handler = True
+class Character(cocos.sprite.Sprite):
 
     def __init__(self):
-        super(BackgroundLayer, self).__init__(192, 192, 192, 192)
-
-        label = Label(
-            'Level 1',
-            font_name='Ubuntu Condensed',
-            font_size=70,
-            anchor_x='center',
-            anchor_y='center'
-        )
-
-        label.position = 120, 320
-        label.do(MoveBy((600, 0), 2))
-        self.add(label)
-
-        sprite1 = Sprite('trees.png')
-        self.add(sprite1)
-        sprite1.position = 220, 220
-        sprite1.do(FadeIn(3))
-
-        self.add(sprite1, z=0)
-
-        self.posx = 100
-        self.posy = 240
-        self.text = Label('Mouse Event', font_size=18, x=self.posx, y=self.posy )
-        self.add(self.text)
-
-    def update_text(self, x, y):
-        text = 'Mouse @ %d,%d' % (x, y)
-        self.text.element.text = text
-        self.text.element.x = self.posx
-        self.text.element.y = self.posy
-
-    def on_mouse_motion(self, x, y, dx, dy):
-        self.update_text(x, y)
-
-    def on_mouse_drag(self, x, y, dx, dy, buttons, modifiers):
-        self.update_text(x, y)
-
-    def on_mouse_press(self, x, y, buttons, modifiers):
-        self.posx, self.posy = director.get_virtual_coordinates(x, y)
-        self.update_text(x, y)
+        super(Character, self).__init__('trees.png', position=(220, 240))
 
 
 #This is the emitter
-class Playground(cocos.layer.ScrollableLayer, pyglet.event.EventDispatcher):
+class Playground(pyglet.event.EventDispatcher):
     is_event_handler = True
 
     def __init__(self):
@@ -69,19 +27,11 @@ class Playground(cocos.layer.ScrollableLayer, pyglet.event.EventDispatcher):
         self.transform_anchor_x = x // 2
         self.transform_anchor_y = y // 2
 
-        sprite = Sprite('car.gif')
-        self.add(sprite)
-        sprite.position = -50, -110
-
-    def add(self, BackgroundLayer, z=0, name=None ):
-        return director.window.push_handlers(Scene)
 
     def __register_event_type(self):
         self.register_event_type('on_enter')
         self.register_event_type('on_mouse_motion')
 
 def get_newgame():
-    scroller = cocos.layer.ScrollingManager(viewport=director.window)
-    layer = (BackgroundLayer())
-    scroller.add(Playground())
-    return Scene(layer, scroller)
+    layer = (Character())
+    return Scene(layer)
