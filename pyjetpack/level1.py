@@ -1,13 +1,11 @@
 # -*- encoding: utf-8 -*-
 import cocos
 from cocos.scene import Scene
-# from cocos.text import Label
-# from cocos.layer import ColorLayer, MultiplexLayer
 from cocos.sprite import Sprite
-# from cocos.actions import FadeIn, MoveBy
+from cocos.actions import MoveBy
 from cocos.director import director
 import pyglet
-# from pyglet.window import key
+from pyglet.window import key
 
 
 class Character(cocos.sprite.Sprite):
@@ -20,6 +18,12 @@ class Character(cocos.sprite.Sprite):
 
         sprite.position = 100, 20
         sprite.scale = 3
+
+    def on_key_press(self, symbol):
+        if symbol == key.RIGHT:
+            move = MoveBy((200, 5), 200)
+        return self.sprite.do(move)
+
 
 
 #This is the emitter
@@ -35,7 +39,7 @@ class Playground(pyglet.event.EventDispatcher):
 
 
     def __register_event_type(self):
-        self.register_event_type('on_enter')
+        self.register_event_type('on_key_press')
         self.register_event_type('on_mouse_motion')
 
 def get_newgame():
