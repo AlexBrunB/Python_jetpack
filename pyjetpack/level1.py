@@ -18,6 +18,9 @@ class Character(cocos.sprite.Sprite):
         sprite = Sprite('car.gif')
         self.add(sprite)
 
+        sprite.position = 100, 20
+        sprite.scale = 3
+
 
 #This is the emitter
 class Playground(pyglet.event.EventDispatcher):
