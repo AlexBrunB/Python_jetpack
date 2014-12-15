@@ -1,19 +1,22 @@
 # -*- encoding: utf-8 -*-
 import cocos
 from cocos.scene import Scene
-from cocos.text import Label
-from cocos.layer import ColorLayer, MultiplexLayer
+# from cocos.text import Label
+# from cocos.layer import ColorLayer, MultiplexLayer
 from cocos.sprite import Sprite
-from cocos.actions import FadeIn, MoveBy
+# from cocos.actions import FadeIn, MoveBy
 from cocos.director import director
 import pyglet
-from pyglet.window import key
+# from pyglet.window import key
 
 
 class Character(cocos.sprite.Sprite):
 
     def __init__(self):
         super(Character, self).__init__('trees.png', position=(220, 240))
+
+        sprite = Sprite('car.gif')
+        self.add(sprite)
 
 
 #This is the emitter
