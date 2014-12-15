@@ -2,7 +2,7 @@
 import cocos
 from cocos.scene import Scene
 from cocos.sprite import Sprite
-from cocos.layer import ColorLayer
+from cocos.layer import Layer
 from cocos.director import director
 import pyglet
 from pyglet.window import key
@@ -10,11 +10,11 @@ from pyglet.window import key
 keyboard = key.KeyStateHandler()
 
 
-class Character(cocos.layer.ColorLayer):
+class Character(cocos.layer.Layer):
     is_event_handler = True
 
     def __init__(self):
-        super(Character, self).__init__(192, 192, 192, 80)
+        super(Character, self).__init__()
         img = pyglet.image.load('car.gif')
         self.sprite = cocos.sprite.Sprite(img)
         self.sprite.scale = 3
