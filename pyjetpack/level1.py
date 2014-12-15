@@ -23,20 +23,18 @@ class Character(cocos.layer.Layer):
 
         sprite = Sprite('trees.png')
         sprite.position = 220, 220
-        sprite.opacity = 70
+        sprite.opacity = 80
         self.add(sprite, z=0)
 
     def on_key_press(self, symbol, modifiers):
         print 'pressing'
         if symbol == key.RIGHT:
-            self.sprite.x += 10
+            self.sprite.x += 30
         elif symbol == key.LEFT:
-            self.sprite.x -= 10
-        elif symbol == key.UP:
-            self.sprite.y += 10
-        elif symbol == key.DOWN:
-            self.sprite.y -= 10
-
+            self.sprite.x -= 30
+        elif symbol == key.SPACE:
+            self.sprite.y += 60
+    
 
 #This is the emitter
 class Playground(pyglet.event.EventDispatcher):
