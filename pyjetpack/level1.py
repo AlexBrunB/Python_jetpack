@@ -2,28 +2,40 @@
 import cocos
 from cocos.scene import Scene
 from cocos.sprite import Sprite
-from cocos.actions import MoveBy
+from cocos.layer import ColorLayer
 from cocos.director import director
 import pyglet
 from pyglet.window import key
 
+keyboard = key.KeyStateHandler()
 
-class Character(cocos.sprite.Sprite):
+
+class Character(cocos.layer.ColorLayer):
+    is_event_handler = True
 
     def __init__(self):
-        super(Character, self).__init__('trees.png', position=(220, 240))
+        super(Character, self).__init__(192, 192, 192, 80)
+        img = pyglet.image.load('car.gif')
+        self.sprite = cocos.sprite.Sprite(img)
+        self.sprite.scale = 3
+        self.sprite.position = 220, 60
+        self.add(self.sprite)
 
-        sprite = Sprite('car.gif')
-        self.add(sprite)
+        sprite = Sprite('trees.png')
+        sprite.position = 220, 220
+        sprite.opacity = 70
+        self.add(sprite, z=0)
 
-        sprite.position = 100, 20
-        sprite.scale = 3
-
-    def on_key_press(self, symbol):
+    def on_key_press(self, symbol, modifiers):
+        print 'pressing'
         if symbol == key.RIGHT:
-            move = MoveBy((200, 5), 200)
-        return self.sprite.do(move)
-
+            self.sprite.x += 10
+        elif symbol == key.LEFT:
+            self.sprite.x -= 10
+        elif symbol == key.UP:
+            self.sprite.y += 10
+        elif symbol == key.DOWN:
+            self.sprite.y -= 10
 
 
 #This is the emitter
@@ -43,5 +55,5 @@ class Playground(pyglet.event.EventDispatcher):
         self.register_event_type('on_mouse_motion')
 
 def get_newgame():
-    layer = (Character())
-    return Scene(layer)
+    player = Character()
+    return Scene(player)
