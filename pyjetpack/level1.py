@@ -29,12 +29,12 @@ class Character(cocos.layer.Layer):
     def on_key_press(self, symbol, modifiers):
         print 'pressing'
         if symbol == key.RIGHT:
-            self.sprite.x += 30
+            self.sprite.x += 60
         elif symbol == key.LEFT:
-            self.sprite.x -= 30
+            self.sprite.x -= 60
         elif symbol == key.SPACE:
-            self.sprite.y += 60
-    
+            self.sprite.y += 30
+
 
 #This is the emitter
 class Playground(pyglet.event.EventDispatcher):
