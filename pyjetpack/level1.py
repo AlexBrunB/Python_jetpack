@@ -18,7 +18,7 @@ class Character(cocos.layer.Layer):
         img = pyglet.image.load('car.gif')
         self.sprite = cocos.sprite.Sprite(img)
         self.sprite.scale = 3
-        self.sprite.position = 220, 60
+        self.sprite.position = 120, 60
         self.add(self.sprite)
 
         sprite = Sprite('trees.png')
@@ -27,13 +27,10 @@ class Character(cocos.layer.Layer):
         self.add(sprite, z=0)
 
     def on_key_press(self, symbol, modifiers):
-        print 'pressing'
-        if symbol == key.RIGHT:
-            self.sprite.x += 60
-        elif symbol == key.LEFT:
-            self.sprite.x -= 60
-        elif symbol == key.SPACE:
-            self.sprite.y += 30
+        if symbol == key.UP:
+            self.sprite.y += 60
+        elif symbol == key.DOWN:
+            self.sprite.y -= 60
 
 
 #This is the emitter
