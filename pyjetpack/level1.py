@@ -17,8 +17,8 @@ class Character(cocos.layer.Layer):
         super(Character, self).__init__()
         img = pyglet.image.load('kid.png')
         self.sprite = cocos.sprite.Sprite(img)
-        self.sprite.scale = 3
-        self.sprite.position = 120, 40
+        self.sprite.scale = 6
+        self.sprite.position = 120, 60
         self.add(self.sprite)
 
         sprite = Sprite('trees.png')
