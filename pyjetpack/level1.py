@@ -3,6 +3,7 @@ import cocos
 from cocos.scene import Scene
 from cocos.sprite import Sprite
 from cocos.layer import Layer
+from cocos.tiles import *
 from cocos.director import director
 import pyglet
 from pyglet.window import key
@@ -49,6 +50,15 @@ class Playground(pyglet.event.EventDispatcher):
         self.register_event_type('on_key_press')
         self.register_event_type('on_mouse_motion')
 
+
 def get_newgame():
+    global tiles
     player = Character()
+    # Try to introduce a tiled map in background WIP.
+    scroller = player
+    map_layer = tiles.load('level1.xml')['level1']
+    scroller.add(player)
+    scroller.add(map_layer)
+
+
     return Scene(player)
