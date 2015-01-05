@@ -16,13 +16,13 @@ class Character(cocos.layer.Layer):
 
     def __init__(self):
         super(Character, self).__init__()
-        img = pyglet.image.load('kid.png')
+        img = pyglet.image.load('data/kid.png')
         self.sprite = cocos.sprite.Sprite(img)
         self.sprite.scale = 6
         self.sprite.position = 120, 60
         self.add(self.sprite)
 
-        sprite = Sprite('trees.png')
+        sprite = Sprite('data/trees.png')
         sprite.position = 220, 220
         sprite.opacity = 80
         self.add(sprite, z=0)
