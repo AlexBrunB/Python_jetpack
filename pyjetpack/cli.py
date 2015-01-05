@@ -9,6 +9,7 @@ from cocos.layer import ColorLayer
 from cocos.menu import MenuItem, MultiplexLayer, ToggleMenuItem
 from cocos.menu import MultipleMenuItem
 from cocos.menu import shake, shake_back
+from cocos.scenes.transitions import FlipAngular3DTransition
 from cocos.director import director
 from pyjetpack import soundex
 from pyjetpack.level1 import get_newgame
@@ -34,7 +35,7 @@ class MainMenu(Menu):
         self.create_menu(items, shake(), shake_back())
 
     def on_new_game(self):
-        director.push(get_newgame())
+        director.push(FlipAngular3DTransition(get_newgame()))
 
     def on_options(self):
         self.parent.switch_to(1)
