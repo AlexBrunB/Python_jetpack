@@ -17,7 +17,7 @@ from pyjetpack.level1 import get_newgame
 
 class BackgroundLayer(ColorLayer):
     def __init__(self):
-        super(BackgroundLayer, self).__init__(192, 192, 192, 80)
+        super(BackgroundLayer, self).__init__(128, 128, 192, 80)
 
 
 class MainMenu(Menu):
