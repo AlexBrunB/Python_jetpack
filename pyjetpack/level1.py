@@ -1,10 +1,9 @@
 # -*- encoding: utf-8 -*-
 import cocos
 from cocos.scene import Scene
+from cocos.actions import MoveBy, FadeIn
+from cocos.text import Label
 from cocos.sprite import Sprite
-from cocos.layer import Layer
-from cocos.tiles import *
-from cocos.director import director
 import pyglet
 from pyglet.window import key
 
@@ -16,49 +15,38 @@ class Character(cocos.layer.Layer):
 
     def __init__(self):
         super(Character, self).__init__()
+        sprite = Sprite('data/trees.png')
+        sprite.position = 220, 220
+        sprite.opacity = 60
+        self.add(sprite, z=0)
+
         img = pyglet.image.load('data/kid.png')
         self.sprite = cocos.sprite.Sprite(img)
         self.sprite.scale = 6
         self.sprite.position = 120, 60
+        self.sprite.do(FadeIn(8))
         self.add(self.sprite)
 
-        sprite = Sprite('data/trees.png')
-        sprite.position = 220, 220
-        sprite.opacity = 80
-        self.add(sprite, z=0)
+        self.label = cocos.text.Label('Level 1',
+            font_name='Tlwg Typist',
+            font_size=42,
+            x=320, y=400,
+            anchor_x='center',
+            anchor_y='center')
+        self.label.do(MoveBy((0, 120), 4))
+        self.add(self.label)
 
-    def on_key_press(self, symbol, modifiers):
+
+
+    def on_key_press(self, symbol):
         if symbol == key.UP:
             self.sprite.y += 60
         elif symbol == key.DOWN:
             self.sprite.y -= 60
 
 
-#This is the emitter
-class Playground(pyglet.event.EventDispatcher):
-    is_event_handler = True
-
-    def __init__(self):
-        super(Playground, self).__init__()
-
-        x,y = director.get_window_size()
-        self.transform_anchor_x = x // 2
-        self.transform_anchor_y = y // 2
-
-
-    def __register_event_type(self):
-        self.register_event_type('on_key_press')
-        self.register_event_type('on_mouse_motion')
-
-
 def get_newgame():
-    global tiles
+
     player = Character()
-    # Try to introduce a tiled map in background WIP.
-    scroller = player
-    map_layer = tiles.load('level1.xml')['level1']
-    scroller.add(player)
-    scroller.add(map_layer)
-
-
-    return Scene(player)
+    main_scene = cocos.scene.Scene(player)
+    return Scene(main_scene)
