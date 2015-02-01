@@ -1,7 +1,8 @@
-- Ajouter copyrights
-- Ajouter actions sur level1.py 
-- Ajouter des evenements sur le sprite. DONE
-- Chercher Class Music.
+#- Ajouter copyrights
+- Changer Police du Menu
+- Correction actions sur level1.py 
+- Chercher Scrolling Manager + Tiled Map
+
 
 
 - 
