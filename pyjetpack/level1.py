@@ -2,7 +2,6 @@
 import cocos
 from cocos.scene import Scene
 from cocos.actions import MoveBy, FadeIn
-from cocos.text import Label
 from cocos.sprite import Sprite
 import pyglet
 from pyglet.window import key

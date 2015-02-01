@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 from __future__ import division, print_function, unicode_literals
 
-
+## Je comprends pas pourquoi j'ai un sapin de Noël dans les imports!!
 from cocos.scene import Scene
 from cocos.menu import Menu
 from cocos.layer import ColorLayer
@@ -23,7 +23,7 @@ class MainMenu(Menu):
     def __init__(self):
         super(MainMenu, self).__init__("Main menu")
 
-        soundex.set_music('space_oddity.ogg')
+        #soundex.set_music('space_oddity.ogg')
 
         items = [
             MenuItem('Jouer', self.on_new_game),
@@ -140,8 +140,8 @@ class ScoreMenu(Menu):
 
 def main():
 
-    pyglet.resource.path.append('@pyjetpack.data')
-    pyglet.resource.reindex()
+    #pyglet.resource.path.append('@pyjetpack.data')
+    #pyglet.resource.reindex()
     window = director.init(resizable=True)
     director.window = window
     scene = Scene(
