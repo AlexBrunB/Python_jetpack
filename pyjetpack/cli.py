@@ -3,12 +3,11 @@ from __future__ import division, print_function, unicode_literals
 
 
 from cocos.scene import Scene
-import pyglet
 from cocos.menu import Menu
 from cocos.layer import ColorLayer
 from cocos.menu import MenuItem, MultiplexLayer, ToggleMenuItem
 from cocos.menu import MultipleMenuItem
-from cocos.menu import shake, shake_back
+from cocos.menu import fixedPositionMenuLayout
 from cocos.scenes.transitions import FlipAngular3DTransition
 from cocos.director import director
 from pyjetpack import soundex
@@ -32,7 +31,11 @@ class MainMenu(Menu):
             MenuItem('Scores', self.on_scores),
             MenuItem('Quitter', self.on_quit),
         ]
-        self.create_menu(items, shake(), shake_back())
+        items[0].scale = 1.2
+        self.create_menu(items,
+                         layout_strategy=fixedPositionMenuLayout(
+                             [(450, 300), (130, 200), (200, 100), (400, 50)]))
+
 
     def on_new_game(self):
         director.push(FlipAngular3DTransition(get_newgame()))
