@@ -1,7 +1,7 @@
 #- Ajouter copyrights
-- Corriger ce problème d'import
+#- Corriger ce problème d'import
 - Changer Police du Menu
-- Correction actions sur level1.py 
+#- Correction actions sur level1.py 
 - Développer Scrolling Manager + Tiled Map
 
 
