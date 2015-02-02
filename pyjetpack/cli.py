@@ -12,7 +12,7 @@ from cocos.scenes.transitions import FlipAngular3DTransition
 from cocos.director import director
 from pyjetpack import soundex
 from pyjetpack.level1 import get_newgame
-
+import pyglet
 
 class BackgroundLayer(ColorLayer):
     def __init__(self):
@@ -140,8 +140,8 @@ class ScoreMenu(Menu):
 
 def main():
 
-    #pyglet.resource.path.append('@pyjetpack.data')
-    #pyglet.resource.reindex()
+    pyglet.resource.path.append('@pyjetpack.data')
+    pyglet.resource.reindex()
     window = director.init(resizable=True)
     director.window = window
     scene = Scene(
