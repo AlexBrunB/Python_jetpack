@@ -21,7 +21,7 @@ class BackgroundLayer(ColorLayer):
 
 class MainMenu(Menu):
     def __init__(self):
-        super(MainMenu, self).__init__("Main menu")
+        super(MainMenu, self).__init__("Python Jetpack")
 
         #soundex.set_music('space_oddity.ogg')
 
