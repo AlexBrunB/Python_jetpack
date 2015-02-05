@@ -81,6 +81,40 @@ class ScrollableLayer(cocos.layer.Layer):
         super(ScrollableLayer, self).on_exit()
         self.director.pop_handlers()
 
+
+class ScrollingManager(cocos.layer.Layer):
+    """Manager will limit scrolling.
+    If a layer has no dimensions it will scroll freely and without bound.
+    The manager is initialised with the viewport (usually a Window) which has
+    the pixel dimensions .width and .height which are used during focusing.
+    """
+    def __init__(self):
+        super(ScrollingManager, self, viewport=None, do_not_scale=None).__init__()
+        img = pyglet.image.load('data/trees.png')
+        super.self.add(img)
+
+        # map size (cells)
+        self.view_x, self.view_y = 128, 128
+        self.view_w, self.view_h = 128, 128
+        self.childs_ox = 100
+        self.childs_oy = 100
+
+        # Focal point on the Layer
+        self.fx = self.fy = 0
+
+       # window size (pixels) Don't know what size the screen size?
+        self.transform_anchor_x = 960
+        self.transform_anchor_y = 640
+        # Doesn't work yet
+        self.viewport = viewport
+
+    def on_enter(self):
+        super(ScrollingManager, self).on_enter()
+        self.director.push_handlers(self.on_cocos_resize)
+        self.update_view_size()
+        self.refresh_focus()
+
+
 def get_newgame():
 
     player = Character()
