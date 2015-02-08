@@ -106,13 +106,16 @@ class ScrollingManager(cocos.layer.Layer):
         self.transform_anchor_x = 960
         self.transform_anchor_y = 640
         # Doesn't work yet
-        self.viewport = viewport
+        self.add(ScrollingManager)
+        self.update_view_size(ScrollingManager)
 
     def on_enter(self):
         super(ScrollingManager, self).on_enter()
         self.director.push_handlers(self.on_cocos_resize)
         self.update_view_size()
         self.refresh_focus()
+
+
 
 
 def get_newgame():
