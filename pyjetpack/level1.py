@@ -34,17 +34,30 @@ class Character(cocos.layer.ColorLayer):
             anchor_x='center',
             anchor_y='center')
         self.label.do(MoveBy((0, 120), 4))
+        self.label.set_focus = (15, 15)
+        self.label.force_focus = (15, 15)
         self.add(self.label)
 
     def on_key_press(self, symbol, modifiers):
         if symbol == key.RIGHT:
-            self.sprite.x += 20
+            self.sprite.x += 80
         elif symbol == key.LEFT:
-            self.sprite.x -= 20
+            self.sprite.x -= 80
         elif symbol == key.UP:
-            self.sprite.y += 20
+            self.sprite.y += 80
         elif symbol == key.DOWN:
-            self.sprite.y -= 20
+            self.sprite.y -= 80
+
+
+class Enemy(cocos.layer.ColorLayer):
+
+    def __init__(self):
+        super(Enemy, self).__init__(192, 192, 192, 80)
+        img = pyglet.image.load('data/poulpi.png')
+        self.sprite = cocos.sprite.Sprite(img)
+        self.sprite.position = 120, 350
+        self.sprite.opacity = 60
+
 
 
 class PauseScene(Scene):
@@ -114,7 +127,6 @@ class ScrollingManager(cocos.layer.Layer):
         self.director.push_handlers(self.on_cocos_resize)
         self.update_view_size()
         self.refresh_focus()
-
 
 
 
